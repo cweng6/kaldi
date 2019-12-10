@@ -1,0 +1,5 @@
+
+
+g++ -O3  -Wall -shared  -std=c++11 -fPIC kaldi_matrix.cc `python -m pybind11 --includes` -I../ -I/data/home/cweng/build/pykaldi/tools/kaldi/tools/openfst/include -L../lib -lkaldi-base -lkaldi-util -lkaldi-matrix -o kaldi_matrix`python3-config --extension-suffix`
+
+g++ -DHAVE_CUDA=1 -O3  -Wall -shared  -std=c++11 -fPIC kaldi_cudamatrix.cc `python -m pybind11 --includes` -I../ -I/data/home/cweng/build/pykaldi/tools/kaldi/tools/openfst/include -I/usr/local/cuda/include -I/data/home/cweng/build/anaconda3/lib/python3.7/site-packages/torch/lib/include -I/data/home/cweng/build/anaconda3/lib/python3.7/site-packages/torch/lib/include/torch/csrc/api/include -L../lib -L/usr/local/cuda/lib64 -L/usr/local/cuda/lib64/stubs/ -L/data/home/cweng/build/anaconda3/lib/python3.7/site-packages/torch/lib -lkaldi-base -lkaldi-util -lkaldi-cudamatrix -lc10 -lc10_cuda -lcaffe2 -lcaffe2_detectron_ops_gpu -lcaffe2_gpu -lcaffe2_module_test_dynamic -lcaffe2_observers -ltorch -ltorch_python -lnvrtc -lcublas -lcudart -lcuda -o kaldi_cudamatrix`python3-config --extension-suffix`
